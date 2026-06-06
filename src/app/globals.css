@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --greenweb-50: #f0fdf4;
+  --greenweb-100: #dcfce7;
+  --greenweb-200: #bbf7d0;
+  --greenweb-300: #86efac;
+  --greenweb-400: #4ade80;
+  --greenweb-500: #22c55e;
+  --greenweb-600: #16a34a;
+  --greenweb-700: #15803d;
+  --greenweb-800: #166534;
+  --greenweb-900: #14532d;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f0fdf4;
+}
+
+@layer utilities {
+  .card-hover {
+    @apply transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5;
+  }
+}
+
+/* Leaflet map fixes */
+.leaflet-container {
+  height: 100%;
+  width: 100%;
+  border-radius: 0.75rem;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
