@@ -19,17 +19,17 @@ export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
 
   return (
-    <nav className="bg-white border-b border-green-200 sticky top-0 z-50 shadow-sm">
+    <nav className="sticky top-0 z-50 border-b border-field-line bg-white/90 backdrop-blur supports-[backdrop-filter]:bg-white/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
-            <div className="w-10 h-10 bg-green-600 rounded-xl flex items-center justify-center group-hover:bg-green-700 transition-colors">
-              <Sprout className="w-6 h-6 text-white" />
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-forest-700 transition-colors group-hover:bg-forest-800">
+              <Sprout className="h-5 w-5 text-wheat-300" />
             </div>
-            <div>
-              <span className="text-lg font-bold text-green-800">GreenWeb</span>
-              <span className="hidden sm:inline text-xs text-green-600 block -mt-1">Institute</span>
+            <div className="leading-none">
+              <span className="block font-display text-lg font-semibold text-forest-900">GreenWeb</span>
+              <span className="mt-0.5 block text-[10px] font-semibold uppercase tracking-[0.22em] text-wheat-600">Institute</span>
             </div>
           </Link>
 
@@ -43,8 +43,8 @@ export function Navbar() {
                   href={href}
                   className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
                     active
-                      ? 'bg-green-100 text-green-800'
-                      : 'text-gray-600 hover:bg-green-50 hover:text-green-700'
+                      ? 'bg-forest-50 text-forest-800'
+                      : 'text-field-muted hover:bg-forest-50 hover:text-forest-700'
                   }`}
                 >
                   <Icon className="w-4 h-4" />
@@ -58,7 +58,7 @@ export function Navbar() {
           <div className="flex items-center gap-3">
             <Link
               href="/profile"
-              className="hidden sm:flex items-center gap-2 px-3 py-2 rounded-lg bg-green-50 text-green-700 hover:bg-green-100 transition-colors text-sm font-medium"
+              className="hidden sm:flex items-center gap-2 rounded-lg bg-forest-700 px-3.5 py-2 text-sm font-medium text-white transition-colors hover:bg-forest-800"
             >
               <User className="w-4 h-4" />
               Profile
@@ -66,7 +66,9 @@ export function Navbar() {
             {/* Mobile menu button */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="lg:hidden p-2 rounded-lg hover:bg-green-100 transition-colors text-gray-600"
+              aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={mobileOpen}
+              className="lg:hidden rounded-lg p-2 text-field-muted transition-colors hover:bg-forest-50"
             >
               {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -75,7 +77,7 @@ export function Navbar() {
 
         {/* Mobile Nav */}
         {mobileOpen && (
-          <div className="lg:hidden py-4 border-t border-green-100">
+          <div className="lg:hidden border-t border-field-line py-4">
             <div className="flex flex-col gap-1">
               {navItems.map(({ href, label, icon: Icon }) => {
                 const active = pathname === href
@@ -86,8 +88,8 @@ export function Navbar() {
                     onClick={() => setMobileOpen(false)}
                     className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
                       active
-                        ? 'bg-green-100 text-green-800'
-                        : 'text-gray-600 hover:bg-green-50'
+                        ? 'bg-forest-50 text-forest-800'
+                        : 'text-field-muted hover:bg-forest-50'
                     }`}
                   >
                     <Icon className="w-5 h-5" />
@@ -95,6 +97,10 @@ export function Navbar() {
                   </Link>
                 )
               })}
+              <Link href="/profile" onClick={() => setMobileOpen(false)} className="flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium text-field-muted hover:bg-forest-50">
+                <User className="h-5 w-5" />
+                Profile
+              </Link>
             </div>
           </div>
         )}

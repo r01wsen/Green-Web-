@@ -1,210 +1,210 @@
 import Link from 'next/link'
 import {
-  Sprout, Tractor, Leaf, Warehouse, FlaskConical, ShoppingBag,
-  Map, TrendingUp, Satellite, Shield, Zap, Globe, ArrowRight,
-  CheckCircle2, Star, Users, BarChart3
+  Sprout, Leaf, Warehouse, FlaskConical, ShoppingBag, Map, TrendingUp, Satellite,
+  ArrowRight, CheckCircle2, Tractor, Users, GraduationCap, Mail,
 } from 'lucide-react'
+import { FieldMap } from '@/components/FieldMap'
 
-const features = [
-  { icon: FlaskConical, title: 'AI Disease Detection', desc: 'Upload crop photos for instant AI-powered disease diagnosis with confidence scores', color: 'bg-red-50 border-red-200 text-red-600' },
-  { icon: Map, title: 'GIS Field Mapping', desc: 'Draw field boundaries on satellite maps and track NDVI health indices over time', color: 'bg-blue-50 border-blue-200 text-blue-600' },
-  { icon: Sprout, title: 'Crop Cycle Management', desc: 'Track planting to harvest with yield predictions and fertilizer planning', color: 'bg-green-50 border-green-200 text-green-600' },
-  { icon: Leaf, title: 'Livestock Tracking', desc: 'Monitor animal health, vaccinations, and breeding records in one place', color: 'bg-amber-50 border-amber-200 text-amber-600' },
-  { icon: Warehouse, title: 'Smart Inventory', desc: 'Track seeds, fertilizers, pesticides with low-stock alerts and expiry warnings', color: 'bg-purple-50 border-purple-200 text-purple-600' },
-  { icon: ShoppingBag, title: 'Direct Marketplace', desc: 'Sell produce directly to buyers with listings, orders, and delivery tracking', color: 'bg-orange-50 border-orange-200 text-orange-600' },
-  { icon: Satellite, title: 'Satellite Integration', desc: 'NASA MODIS + Sentinel-2 NDVI composites with pre-fetch caching', color: 'bg-cyan-50 border-cyan-200 text-cyan-600' },
-  { icon: TrendingUp, title: 'Yield Predictions', desc: 'ML models trained on your historical data + NDVI + weather for accurate forecasts', color: 'bg-emerald-50 border-emerald-200 text-emerald-600' },
+const tools = [
+  { icon: Map, title: 'GIS field mapping', desc: 'Draw field boundaries on satellite maps and follow each field’s NDVI over the season.', href: '/gis-map' },
+  { icon: FlaskConical, title: 'AI disease detection', desc: 'Photograph a leaf and get a diagnosis, confidence score, severity and treatment.', href: '/ai-disease' },
+  { icon: Sprout, title: 'Crop cycles', desc: 'Plan from planting to harvest with fertilizer schedules and yield estimates.', href: '/crops' },
+  { icon: Leaf, title: 'Livestock records', desc: 'Health, vaccinations and breeding records for every animal in one place.', href: '/livestock' },
+  { icon: Warehouse, title: 'Farm inventory', desc: 'Seed, fertilizer and pesticide stock with low-stock and expiry alerts.', href: '/inventory' },
+  { icon: ShoppingBag, title: 'Direct marketplace', desc: 'List produce, take orders and track deliveries without a middleman.', href: '/marketplace' },
+  { icon: Satellite, title: 'Satellite data', desc: 'NASA MODIS and Sentinel-2 NDVI composites, cached so maps load fast in the field.', href: '/gis-map' },
+  { icon: TrendingUp, title: 'Yield forecasts', desc: 'Models that combine your field history, NDVI and weather into a harvest forecast.', href: '/crops' },
 ]
 
 const stats = [
-  { value: '22+', label: 'Years Agronomy Experience', icon: Star },
-  { value: '200+', label: 'Farmers Engaged Globally', icon: Users },
-  { value: '345%', label: 'Engagement Growth Rate', icon: BarChart3 },
-  { value: '4', label: 'Patents Licensed', icon: Shield },
+  { value: '22+', label: 'years of agronomy experience' },
+  { value: '200+', label: 'farmers engaged worldwide' },
+  { value: '4', label: 'patents licensed' },
+  { value: '38', label: 'crop diseases recognized' },
+]
+
+const steps = [
+  { title: 'Map your fields', desc: 'Outline each field once on the satellite map. Crops, planting dates and inputs attach to it.' },
+  { title: 'Watch crop health', desc: 'Fresh NDVI imagery shows which parts of a field are thriving and which are falling behind.' },
+  { title: 'Act early', desc: 'Get an alert when a field drops, confirm the cause with a leaf photo, and treat only where needed.' },
+]
+
+const audiences = [
+  { icon: Tractor, title: 'Farmers', desc: 'One place for fields, crops, animals and sales, on your phone.' },
+  { icon: Users, title: 'Cooperatives & agribusiness', desc: 'See every member farm’s field health and plan inputs and buying together.' },
+  { icon: GraduationCap, title: 'Institutes & extension', desc: 'Teach precision agriculture with real satellite data and field records.' },
 ]
 
 export default function HomePage() {
   return (
     <div>
       {/* Hero */}
-      <section className="relative bg-gradient-to-br from-green-800 via-green-700 to-green-900 text-white overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0" style={{
-            backgroundImage: 'radial-gradient(circle at 25% 25%, rgba(255,255,255,0.15) 0%, transparent 50%), radial-gradient(circle at 75% 75%, rgba(255,255,255,0.1) 0%, transparent 50%)'
-          }} />
-        </div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32 relative">
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 bg-green-600/50 border border-green-500/30 rounded-full px-4 py-1.5 mb-6">
-              <Globe className="w-4 h-4" />
-              <span className="text-sm font-medium text-green-200">Precision Agriculture Platform</span>
-            </div>
-            <h1 className="text-4xl md:text-6xl font-extrabold leading-tight mb-6">
-              The Future of <span className="text-green-300">Smart Farming</span> is Here
+      <section className="relative overflow-hidden bg-forest-900 text-white">
+        <svg aria-hidden="true" className="absolute inset-0 h-full w-full opacity-[0.07]" preserveAspectRatio="none" viewBox="0 0 800 400">
+          {Array.from({ length: 14 }, (_, i) => (
+            <path key={i} d={`M-20 ${40 + i * 26} C 180 ${10 + i * 26}, 420 ${80 + i * 26}, 820 ${20 + i * 26}`} stroke="#e2b85a" strokeWidth="1" fill="none" />
+          ))}
+        </svg>
+        <div className="relative mx-auto grid max-w-7xl items-center gap-14 px-4 pb-24 pt-16 sm:px-6 md:pt-20 lg:grid-cols-[1.05fr_1fr] lg:px-8 lg:pb-28">
+          <div className="min-w-0">
+            <p className="mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-wheat-300">GreenWeb Institute · Precision agriculture</p>
+            <h1 className="font-display text-4xl font-semibold leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl">
+              See every field from space. Act before the harvest is at risk.
             </h1>
-            <p className="text-lg md:text-xl text-green-100 leading-relaxed mb-8 max-w-2xl">
-              AI-powered disease detection, satellite NDVI mapping, crop cycle management,
-              livestock tracking, and a direct marketplace — all in one platform built for
-              farmers worldwide.
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-forest-100">
+              Satellite crop-health maps, AI disease diagnosis, farm records and a direct marketplace, in one platform built for farmers.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link
-                href="/farm"
-                className="inline-flex items-center gap-2 bg-white text-green-800 px-6 py-3.5 rounded-xl font-semibold hover:bg-green-50 transition-colors shadow-lg"
-              >
-                Start Farming <ArrowRight className="w-4 h-4" />
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+              <Link href="/farm" className="inline-flex items-center justify-center gap-2 rounded-xl bg-wheat-300 px-6 py-3.5 font-semibold text-forest-950 transition-colors hover:bg-wheat-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wheat-200">
+                Start with your farm <ArrowRight className="h-4 w-4" />
               </Link>
-              <Link
-                href="/ai-disease"
-                className="inline-flex items-center gap-2 bg-green-600/50 border border-green-500/50 text-white px-6 py-3.5 rounded-xl font-semibold hover:bg-green-600/60 transition-colors backdrop-blur-sm"
-              >
-                <FlaskConical className="w-4 h-4" />
-                Try AI Diagnosis
+              <Link href="/ai-disease" className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/25 px-6 py-3.5 font-semibold text-white transition-colors hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
+                <FlaskConical className="h-4 w-4" /> Diagnose a crop photo
               </Link>
             </div>
+            <p className="mt-8 text-sm text-forest-200">Imagery from NASA MODIS and ESA Sentinel-2.</p>
           </div>
-        </div>
-        {/* Wave divider */}
-        <div className="absolute bottom-0 left-0 right-0">
-          <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0 60L48 54C96 48 192 36 288 30C384 24 480 24 576 30C672 36 768 48 864 54C960 60 1056 60 1152 54C1248 48 1344 36 1392 30L1440 30V60H0Z" fill="#f0fdf4"/>
-          </svg>
+          <div className="min-w-0 lg:pl-6">
+            <FieldMap />
+          </div>
         </div>
       </section>
 
       {/* Stats */}
-      <section className="bg-green-50 py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {stats.map(({ value, label, icon: Icon }) => (
-              <div key={label} className="text-center">
-                <div className="text-3xl md:text-4xl font-extrabold text-green-800 mb-1">{value}</div>
-                <div className="text-sm text-gray-600 font-medium">{label}</div>
+      <section className="border-b border-field-line bg-white">
+        <dl className="mx-auto grid max-w-7xl grid-cols-2 gap-y-8 px-4 py-10 sm:px-6 md:grid-cols-4 lg:px-8">
+          {stats.map(({ value, label }) => (
+            <div key={label} className="border-l-2 border-wheat-300 pl-4">
+              <dt className="sr-only">{label}</dt>
+              <dd className="font-display text-3xl font-semibold text-forest-700 tabular md:text-4xl">{value}</dd>
+              <dd className="mt-1 text-sm text-field-muted">{label}</dd>
+            </div>
+          ))}
+        </dl>
+      </section>
+
+      {/* How it works */}
+      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+        <div className="max-w-2xl">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-wheat-600">How it works</p>
+          <h2 className="mt-3 font-display text-3xl font-semibold text-forest-900 md:text-4xl">From a satellite pass to a decision in the field</h2>
+        </div>
+        <ol className="mt-12 grid gap-6 md:grid-cols-3">
+          {steps.map((s, i) => (
+            <li key={s.title} className="relative rounded-2xl border border-field-line bg-white p-6">
+              <span className="font-display text-4xl font-semibold text-wheat-300 tabular">{i + 1}</span>
+              <h3 className="mt-3 text-lg font-semibold text-forest-900">{s.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-field-muted">{s.desc}</p>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      {/* Tools */}
+      <section className="bg-forest-50 py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
+            <div className="max-w-2xl">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-wheat-600">The platform</p>
+              <h2 className="mt-3 font-display text-3xl font-semibold text-forest-900 md:text-4xl">Everything the farm runs on</h2>
+            </div>
+            <p className="max-w-md text-field-muted">Eight tools that share the same fields, crops and records, so you enter things once.</p>
+          </div>
+          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {tools.map(({ icon: Icon, title, desc, href }) => (
+              <Link key={title} href={href} className="card-hover group flex flex-col rounded-2xl border border-field-line bg-white p-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-forest-500">
+                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-forest-700 text-wheat-200">
+                  <Icon className="h-5 w-5" />
+                </span>
+                <h3 className="mt-5 font-semibold text-forest-900">{title}</h3>
+                <p className="mt-2 flex-1 text-sm leading-relaxed text-field-muted">{desc}</p>
+                <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-forest-600 group-hover:gap-2 transition-all">Open <ArrowRight className="h-3.5 w-3.5" /></span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* AI diagnosis */}
+      <section className="py-20">
+        <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-wheat-600">AI crop diagnosis</p>
+            <h2 className="mt-3 font-display text-3xl font-semibold text-forest-900 md:text-4xl">A plant pathologist in your pocket</h2>
+            <p className="mt-4 text-lg leading-relaxed text-field-muted">
+              Photograph an affected leaf. GreenWeb identifies the likely disease, rates its severity and tells you what to do next.
+            </p>
+            <ul className="mt-6 space-y-3">
+              {['Recognizes 38 crop disease categories', 'Confidence score on every diagnosis', 'Severity from low to critical', 'Treatment steps you can act on today', 'History kept for season-to-season comparison'].map((item) => (
+                <li key={item} className="flex items-start gap-3 text-field-ink">
+                  <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-forest-500" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <Link href="/ai-disease" className="mt-8 inline-flex items-center gap-2 rounded-xl bg-forest-700 px-6 py-3 font-semibold text-white transition-colors hover:bg-forest-800">
+              Try a diagnosis <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+          <div className="rounded-3xl bg-forest-900 p-6 sm:p-10">
+            <div className="rounded-2xl bg-white p-6 shadow-xl">
+              <div className="flex items-center justify-between gap-4">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-wider text-field-muted">Diagnosis · Field C-03</p>
+                  <p className="mt-1 font-display text-xl font-semibold text-forest-900">Northern corn leaf blight</p>
+                  <p className="text-sm italic text-field-muted">Exserohilum turcicum</p>
+                </div>
+                <span className="rounded-full bg-wheat-100 px-3 py-1 text-xs font-bold uppercase tracking-wide text-wheat-600">High</span>
+              </div>
+              <div className="mt-6">
+                <div className="flex justify-between text-sm">
+                  <span className="text-field-muted">Confidence</span>
+                  <span className="font-semibold text-forest-700 tabular">94.2%</span>
+                </div>
+                <div className="mt-2 h-2 rounded-full bg-forest-50">
+                  <div className="h-2 rounded-full bg-forest-500" style={{ width: '94.2%' }} />
+                </div>
+              </div>
+              <div className="mt-6 border-t border-field-line pt-4">
+                <p className="text-xs font-semibold uppercase tracking-wider text-field-muted">Recommended action</p>
+                <p className="mt-2 text-sm leading-relaxed text-field-ink">Apply a labeled fungicide within 48 hours, remove heavily infected leaves and improve field drainage.</p>
+              </div>
+            </div>
+            <p className="mt-4 text-center text-xs text-forest-200">Example result. Always follow local label rules for crop protection products.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Audiences */}
+      <section className="border-t border-field-line bg-white py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <h2 className="font-display text-3xl font-semibold text-forest-900 md:text-4xl">Built for the whole farm community</h2>
+          <div className="mt-10 grid gap-6 md:grid-cols-3">
+            {audiences.map(({ icon: Icon, title, desc }) => (
+              <div key={title} className="flex gap-4">
+                <span className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full bg-wheat-100 text-wheat-600"><Icon className="h-5 w-5" /></span>
+                <div>
+                  <h3 className="font-semibold text-forest-900">{title}</h3>
+                  <p className="mt-1 text-sm leading-relaxed text-field-muted">{desc}</p>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Features Grid */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="text-center mb-14">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Everything You Need to Farm Smarter
-          </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            From satellite-powered field maps to AI disease detection and direct market access —
-            a complete platform for modern agriculture.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {features.map(({ icon: Icon, title, desc, color }) => (
-            <div key={title} className={`card-hover rounded-2xl p-6 border ${color} bg-white`}>
-              <div className="w-12 h-12 rounded-xl bg-current/10 flex items-center justify-center mb-4">
-                <Icon className="w-6 h-6" />
-              </div>
-              <h3 className="font-bold text-base mb-2">{title}</h3>
-              <p className="text-sm opacity-80 leading-relaxed">{desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* AI Feature Highlight */}
-      <section className="bg-white border-y border-green-100 py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <div className="inline-flex items-center gap-2 bg-red-50 border border-red-200 rounded-full px-3 py-1 mb-5">
-                <Zap className="w-3.5 h-3.5 text-red-500" />
-                <span className="text-xs font-semibold text-red-600">AI-POWERED</span>
-              </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                Diagnose Crop Diseases in Seconds
-              </h2>
-              <p className="text-gray-600 text-lg leading-relaxed mb-6">
-                Upload a photo of your crop and our AI will identify potential diseases,
-                assess severity, and recommend treatment — all within seconds.
-              </p>
-              <ul className="space-y-3 mb-8">
-                {[
-                  '38 crop disease categories detected',
-                  'Confidence score for every diagnosis',
-                  'Severity rating: low to critical',
-                  'Recommended action with treatment options',
-                  'Stores history for seasonal comparison'
-                ].map(item => (
-                  <li key={item} className="flex items-center gap-3 text-gray-700">
-                    <CheckCircle2 className="w-5 h-5 text-green-500 flex-shrink-0" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <Link
-                href="/ai-disease"
-                className="inline-flex items-center gap-2 bg-green-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-green-700 transition-colors"
-              >
-                Try AI Diagnosis <ArrowRight className="w-4 h-4" />
-              </Link>
-            </div>
-            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-8 border border-green-200">
-              <div className="bg-white rounded-xl p-6 shadow-sm border">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center">
-                    <FlaskConical className="w-5 h-5 text-red-600" />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-gray-900">Analysis Result</p>
-                    <p className="text-xs text-gray-500">Corn Northern Leaf Blight</p>
-                  </div>
-                </div>
-                <div className="space-y-3">
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm text-gray-600">Confidence</span>
-                    <span className="text-sm font-bold text-green-700">94.2%</span>
-                  </div>
-                  <div className="w-full bg-gray-100 rounded-full h-2">
-                    <div className="bg-green-500 h-2 rounded-full" style={{ width: '94.2%' }} />
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm text-gray-600">Severity</span>
-                    <span className="inline-block bg-orange-100 text-orange-700 text-xs font-semibold px-2.5 py-0.5 rounded-full">HIGH</span>
-                  </div>
-                  <div className="pt-2 border-t">
-                    <p className="text-xs text-gray-500 mb-1">Recommended Action</p>
-                    <p className="text-sm text-gray-700">Apply fungicide within 48 hours. Remove infected leaves. Ensure proper field drainage.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* CTA */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="bg-gradient-to-r from-green-700 to-green-800 rounded-3xl p-10 md:p-16 text-center text-white">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Ready to Transform Your Farm?
-          </h2>
-          <p className="text-green-100 text-lg mb-8 max-w-xl mx-auto">
-            Join the next generation of precision agriculture. Start managing your farm
-            smarter, today.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/farm"
-              className="inline-flex items-center gap-2 bg-white text-green-800 px-8 py-4 rounded-xl font-bold hover:bg-green-50 transition-colors text-lg"
-            >
-              Get Started Free <ArrowRight className="w-5 h-5" />
+      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+        <div className="relative overflow-hidden rounded-3xl bg-forest-800 px-6 py-14 text-center text-white sm:px-12 md:py-16">
+          <h2 className="mx-auto max-w-2xl font-display text-3xl font-semibold md:text-4xl">Put your first field on the map today</h2>
+          <p className="mx-auto mt-4 max-w-xl text-forest-100">Set up your farm in minutes. Partnerships, pilots and training programs: write to us.</p>
+          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <Link href="/farm" className="inline-flex items-center gap-2 rounded-xl bg-wheat-300 px-7 py-3.5 font-semibold text-forest-950 transition-colors hover:bg-wheat-200">
+              Get started <ArrowRight className="h-4 w-4" />
             </Link>
-            <Link
-              href="/gis-map"
-              className="inline-flex items-center gap-2 bg-green-600/50 border border-green-500 text-white px-8 py-4 rounded-xl font-semibold hover:bg-green-600 transition-colors text-lg"
-            >
-              View GIS Map
-            </Link>
+            <a href="mailto:contact@greenweb.institute" className="inline-flex items-center gap-2 rounded-xl border border-white/25 px-7 py-3.5 font-semibold transition-colors hover:bg-white/10">
+              <Mail className="h-4 w-4" /> contact@greenweb.institute
+            </a>
           </div>
         </div>
       </section>
