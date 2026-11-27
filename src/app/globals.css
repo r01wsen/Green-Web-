@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 :root {
   --greenweb-50: #f0fdf4;
@@ -18,11 +17,15 @@
 }
 
 body {
-  font-family: 'Inter', sans-serif;
-  background-color: #f0fdf4;
+  background-color: #f4f6f1;
+  color: #13251b;
+  -webkit-font-smoothing: antialiased;
 }
 
+h1, h2, h3 { text-wrap: balance; }
+
 @layer utilities {
+  .tabular { font-variant-numeric: tabular-nums; }
   .card-hover {
     @apply transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5;
   }
@@ -40,3 +43,6 @@ input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+@keyframes gw-scan { from { transform: translateY(-100%); } to { transform: translateY(100%); } }
+.gw-scan { animation: gw-scan 6s linear infinite; }
+@media (prefers-reduced-motion: reduce) { .gw-scan { animation: none; display: none; } .card-hover { transition: none; } }
